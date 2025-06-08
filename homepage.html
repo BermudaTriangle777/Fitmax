@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitmax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #effffa;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .top-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: #effffa;
+      z-index: 10;
+      transition: top 0.3s ease;
+    }
+
+    .icon-card {
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .icon-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      background-color: #f8fafc;
+    }
+
+    .icon-card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .text-content {
+      margin-left: 16px;
+    }
+
+    .text-content h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .text-content p {
+      font-size: 1rem;
+      color: #6b7280;
+    }
+
+    .focused {
+      transform: scale(1.1) !important;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3) !important;
+      z-index: 5;
+    }
+.no-select {
+  user-select: none;
+}
+
+.no-context-menu {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  </style>
+</head>
+<body class="relative bg-[#effffa] no-select no-context-menu">
+ <br><br>  <br><br>
+  <div class="top-box" id="topBar"></div>
+
+  <div class="flex justify-center mt-[60px] mb-4">
+    <img src="https://assets.onecompiler.app/43b7v7mer/3ww47radw/1000163970.jpg" alt="FitMax logo" class="max-w-full h-auto w-80" />
+  </div>
+
+  <div class="pt-[60px] pb-28 px-4 space-y-14" id="cardContainer">
+    <!-- Existing Icon Cards -->
+<a href="package .html" class="block action-button text-center">
+  <div class="icon-card" data-aos="fade-up" data-aos-delay="100">
+    <img src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000164062.png" alt="Packages Icon">
+    <div class="text-content">
+      <h2>Packages</h2>
+      <p>Gallery & tour</p>
+    </div>
+  </div>
+</a>
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000164063.png" alt="Offers Icon">
+      <div class="text-content">
+        <h2>Offers</h2>
+        <p>Customized routines</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://storage.googleapis.com/a1aa/image/c9f47809-0593-4682-8f46-d21575885777.jpg" alt="Timings Icon">
+      <div class="text-content">
+        <h2>Timings</h2>
+        <p>Gym open hours</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://storage.googleapis.com/a1aa/image/bc2f36cb-3fcb-4cd8-9855-d7d28d91210d.jpg" alt="Membership Icon">
+      <div class="text-content">
+        <h2>Membership</h2>
+        <p>Join now</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="500">
+      <img src="https://storage.googleapis.com/a1aa/image/72d8f6d9-314a-4b6c-b62b-84fdb237c321.jpg" alt="Diet Icon">
+      <div class="text-content">
+        <h2>Diet Plans</h2>
+        <p>Healthy nutrition</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="600">
+      <img src="https://storage.googleapis.com/a1aa/image/74bf77c4-99cc-4425-8c6b-95f07e57d3da.jpg" alt="Classes Icon">
+      <div class="text-content">
+        <h2>Classes</h2>
+        <p>Group sessions</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="700">
+      <img src="https://storage.googleapis.com/a1aa/image/c49c4228-8046-4670-bb56-bb6cc7b90c93.jpg" alt="Events Icon">
+      <div class="text-content">
+        <h2>Events</h2>
+        <p>Upcoming programs</p>
+      </div>
+    </div>
+
+    <!-- New Icon Cards -->
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="800">
+      <img src="https://example.com/login-icon.png" alt="Client Login Icon">
+      <div class="text-content">
+        <h2>Client Login</h2>
+        <p>Access your account</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="900">
+      <img src="https://example.com/group-class-icon.png" alt="Book Group Class Icon">
+      <div class="text-content">
+        <h2>Book Group Class</h2>
+        <p>Join our group sessions</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1000">
+      <img src="https://example.com/pt-sessions-icon.png" alt="Book PT Sessions Icon">
+      <div class="text-content">
+        <h2>Book PT Sessions</h2>
+        <p>Personal training sessions</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1100">
+      <img src="https://example.com/photo-gallery-icon.png" alt="Photo Gallery Icon">
+      <div class="text-content">
+        <h2>Photo Gallery</h2>
+        <p>Explore gym moments</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1200">
+      <img src="https://example.com/pt-contract-icon.png" alt="PT Contract Icon">
+      <div class="text-content">
+        <h2>PT Contract</h2>
+        <p>Sign your personal training contract</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1300">
+      <img src="https://example.com/par-q-icon.png" alt="Par-Q Icon">
+      <div class="text-content">
+        <h2>Par-Q</h2>
+        <p>Health screening questionnaire</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1400">
+      <img src="https://example.com/trial-warrior-icon.png" alt="Trial Warrior Icon">
+      <div class="text-content">
+        <h2>Trial Warrior</h2>
+        <p>Join for a trial experience</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1500">
+      <img src="https://example.com/feedback-icon.png" alt="Feedback Icon">
+      <div class="text-content">
+        <h2>Feedback</h2>
+        <p>Share your experience</p>
+      </div>
+    </div>
+
+    <div class="icon-card" data-aos="fade-up" data-aos-delay="1600">
+      <img src="https://example.com/reviews-icon.png" alt="Reviews Icon">
+      <div class="text-content">
+        <h2>Reviews</h2>
+        <p>See what our clients say</p>
+      </div>
+    </div>
+  </div>
+<!-- Footer Section -->
+  <footer>
+    <div class="container mx-auto px-4">
+      <div class="flex justify-center space-x-40">
+        <!-- Home link that scrolls to top -->
+        <a href="#top" class="text-lg hover:text-blue-500">Home</a>
+
+        <!-- About link that redirects to about.html -->
+        <a href="about.html" class="text-lg hover:text-blue-500">About</a>
+      </div>
+      
+      <p class="mt-4 text-sm text-gray-500 mx-auto text-center">Copyright 2025 | Fitmax</p>
+    </div>
+  </footer>
+   
+  <br><br>  
+   <br><br><br><br>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: false,
+      offset: 120
+    });
+
+    // Scroll-based top bar visibility
+    let lastScrollTop = 0;
+    const topBar = document.getElementById("topBar");
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      topBar.style.top = scrollTop > lastScrollTop ? "-20px" : "0";
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+
+    // Focus effect on click
+    const cards = document.querySelectorAll(".icon-card");
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        if (navigator.vibrate) navigator.vibrate(15);
+        cards.forEach(c => c.classList.remove("focused"));
+        card.classList.add("focused");
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  </script>
+  <script>
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+</script>
+</body>
+</html>
