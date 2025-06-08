@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fullscreen Zoomed iFrame</title>
+  <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: transparent; /* Make background transparent */
+}
+    .iframe-wrapper {
+      position: fixed;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    .blur-container {
+      width: 475px;
+      height: 1067px;
+      position: relative;
+      transform-origin: center center;
+      visibility: hidden;
+      filter: blur(5px);
+      transition: filter 5s ease;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .img-wrapper {
+      position: absolute;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    #wrap1 {
+      right: -855px;
+      bottom: 350px;
+    }
+
+    #wrap2 {
+      right: -1015px;
+      bottom: 75px;
+    }
+
+    .img {
+      transform: scale(0.2) rotate(59.9deg);
+      transform-origin: center center;
+      transition: transform 5s ease-out;
+    }
+
+    #img2 {
+      transform: scale(0.2) rotate(59.5deg);
+    }
+
+@keyframes moveLeftWithY {
+  to {
+    transform: translateX(-180px) translateY(-300px);
+  }
+}
+
+@keyframes moveRightWithY {
+  to {
+    transform: translateX(200px) translateY(300px);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <div class="iframe-wrapper">
+    <!-- BLURRING ONLY THIS CONTAINER -->
+    <div class="blur-container" id="scaledContainer">
+      <iframe src="homepage.html" id="mainIframe"></iframe>
+    </div>
+
+    <!-- IMAGES OUTSIDE BLUR -->
+    <div class="img-wrapper" id="wrap1">
+      <img src="https://assets.onecompiler.app/437qfd8zj/43h5fa5dc/1000168252.png" id="img1" class="img">
+    </div>
+    <div class="img-wrapper" id="wrap2">
+      <img src="https://assets.onecompiler.app/437qfd8zj/43h5fa5dc/1000168253.png" id="img2" class="img">
+    </div>
+  </div>
+
+  <script>
+    const iframe = document.getElementById("mainIframe");
+    const container = document.getElementById("scaledContainer");
+    const wrap1 = document.getElementById("wrap1");
+    const wrap2 = document.getElementById("wrap2");
+
+    iframe.onload = () => {
+      const scaleX = window.innerWidth / 475;
+      const scaleY = window.innerHeight / 1067;
+      const scaleToFill = Math.max(scaleX, scaleY);
+      container.style.transform = `scale(${scaleToFill})`;
+      container.style.visibility = 'visible';
+
+      // Trigger animation and gradually remove blur
+      setTimeout(() => {
+        wrap1.style.animation = "moveLeftWithY 5s ease-out forwards";
+        wrap2.style.animation = "moveRightWithY 5s ease-out forwards";
+        container.style.filter = "blur(0px)";
+      }, 500);
+    };
+  </script>
+
+</body>
+</html>
