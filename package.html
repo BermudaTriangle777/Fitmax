@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Gym Membership</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Disable text selection and prevent blue background on long press */
+      #homeText {
+        user-select: none; /* Prevent text selection */
+        outline: none; /* Remove the blue outline on click */
+      }
+    </style>
+  </head>
+  <br><br><br><br>
+  <body class="bg-[#f0fcff] min-h-screen p-4">
+    <header class="flex items-center space-x-4 mb-8">
+      <button
+        id="backButton"
+        aria-label="Back"
+        class="bg-black text-white rounded-full w-10 h-10 flex items-center justify-center"
+      >
+        <i class="fas fa-arrow-left text-lg"></i>
+      </button>
+      <h1 id="homeText" class="text-2xl font-semibold text-black cursor-pointer">Home</h1>
+    </header>
+    <section>
+      <h2 class="text-3xl font-semibold mb-6 flex items-center space-x-3 text-gray-900">
+        <i class="fas fa-dumbbell"></i>
+        <span>Gym Membership</span>
+      </h2>
+
+      <div class="grid gap-6 max-w-2xl mx-auto" id="cardContainer">
+        <!-- Cards will be injected here -->
+      </div>
+    </section>
+
+    <!-- Payment Popup -->
+    <div
+      id="paymentPopup"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50"
+    >
+      <div class="bg-white rounded-3xl p-4 w-72 max-h-[80vh] overflow-auto shadow-lg text-center">
+        <h2 class="text-xl font-semibold mb-4">Payment Options</h2>
+        <div class="flex flex-col gap-4">
+          <a id="paytmDeepLink" href="#" target="_blank">
+            <img
+              src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000168515.jpg"
+              class="w-full rounded-2xl shadow"
+            />
+          </a>
+          <a id="upiLink" href="#" target="_blank">
+            <img
+              src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000168524.jpg"
+              alt="Pay with Fam"
+              class="w-full rounded-lg shadow"
+            />
+          </a>
+          <a id="phonePeLink" href="#" target="_blank">
+            <img
+              src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000168540.jpg"
+              alt="Pay with PhonePe"
+              class="w-full rounded-lg shadow"
+            />
+          </a>
+          <a id="gpayLink" href="#" target="_blank">
+            <img
+              src="https://assets.onecompiler.app/437qfd8zj/3ww47radw/1000168546.jpg"
+              alt="Pay with Google Pay"
+              class="w-full rounded-lg shadow"
+            />
+          </a>
+        </div>
+        <button
+          onclick="hidePaymentPopup()"
+          class="mt-6 text-sm text-gray-600 underline"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Function to go to homepage when 'Home' text, 'Back' button, or 'Home' button is clicked
+      function goToHomePage() {
+        if (navigator.vibrate) {
+          navigator.vibrate(5); // Vibrate for 100ms
+        }
+        window.location.href = 'homepage.html'; // Navigate to homepage
+      }
+
+      // Add event listeners to the buttons and Home text
+      document.getElementById('backButton').addEventListener('click', goToHomePage);
+      document.getElementById('homeText').addEventListener('click', goToHomePage); // Home text also triggers the goToHomePage function
+
+      // Dynamically generate gym membership plans and display them as cards
+      const plans = [
+        { title: 'Cardio + Strength New Admission (30 Days)', price: 1700 },
+        { title: 'Cardio + Strength New Admission (3 Months)', price: 3000 },
+        { title: 'Cardio + Strength New Admission (6 Months)', price: 4500 },
+        { title: 'Cardio + Strength New Admission (1 Year)', price: 6500 },
+        { title: 'Strength New Admission (1 Month)', price: 1000 },
+        { title: 'Strength New Admission (3 Months)', price: 2000 },
+        { title: 'Strength New Admission (6 Months)', price: 3300 },
+        { title: 'Strength New Admission (1 Year)', price: 4300 },
+        { title: 'Cardio + Strength Fee (1 Month)', price: 1200 },
+        { title: 'Cardio + Strength Fee (3 Months)', price: 3000 },
+        { title: 'Cardio + Strength Fee (6 Months)', price: 4500 },
+        { title: 'Cardio + Strength Fee (1 Year)', price: 6500 },
+        { title: 'Strength Fee (1 Month)', price: 700 },
+        { title: 'Strength Fee (3 Months)', price: 1800 },
+        { title: 'Strength Fee (6 Months)', price: 3000 },
+        { title: 'Strength Fee (1 Year)', price: 4000 },
+        { title: 'Personal Training (1 Month)', price: 5000 },
+        { title: 'Personal Training Bodybuilding (45 Days)', price: 10000 },
+        { title: 'Daily Pass', price: 200 },
+        { title: 'Strength Daily Pass', price: 100 }
+      ];
+
+      const container = document.getElementById('cardContainer');
+
+      plans.forEach((plan) => {
+        const card = document.createElement('article');
+        card.className =
+          'bg-white rounded-lg shadow p-6 text-center fade-in';
+
+        card.innerHTML = `
+          <h3 class="text-lg font-semibold mb-2">${plan.title}</h3>
+          <p class="text-4xl font-bold text-gray-900 mb-4">
+            Rs. <span>${plan.price}</span>
+            <span class="text-lg font-normal text-gray-500">.00</span>
+          </p>
+          <hr class="border-gray-200 mb-4" />
+          <button
+            onclick="showPaymentPopup(${plan.price})"
+            class="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold hover:bg-blue-700 transition"
+          >
+            Purchase
+          </button>
+        `;
+        container.appendChild(card);
+      });
+
+      function showPaymentPopup(amount) {
+        if (navigator.vibrate) navigator.vibrate(5);
+        document.getElementById('paymentPopup').classList.remove('hidden');
+        document.getElementById('paytmDeepLink').href =
+          `paytmmp://pay?pa=9207302577@paytm&pn=Gym&cu=INR&am=${amount}`;
+        document.getElementById('upiLink').href =
+          `upi://pay?pa=9207302577@paytm&pn=Gym&cu=INR&am=${amount}`;
+        document.getElementById('phonePeLink').href =
+          `phonepe://pay?pa=9207302577@phonepe&pn=Gym&cu=INR&am=${amount}`;
+        document.getElementById('gpayLink').href =
+          `gpay://pay?pa=9207302577@gpay&pn=Gym&cu=INR&am=${amount}`;
+      }
+
+      function hidePaymentPopup() {
+        if (navigator.vibrate) navigator.vibrate(5);
+
+        document.getElementById('paymentPopup').classList.add('hidden');
+      }
+
+      // Scroll animation
+      setTimeout(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              } else {
+                entry.target.classList.remove('visible');
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        const allCards = document.querySelectorAll('.fade-in');
+        allCards.forEach(card => observer.observe(card));
+      }, 0);
+    </script>
+    <br><br><br><br><br><br><br>
+  </body>
+</html>
